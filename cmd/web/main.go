@@ -13,8 +13,8 @@ func main() {
 	mux.HandleFunc("GET /snippet/create", snippetCreate)
 	mux.HandleFunc("POST /snippet/create", snippetCreatePost)
 
-	log.Print("starting server on :4000")
-
-	err := http.ListenAndServe(":4000", mux)
+	//the port to be changes to 5000
+	log.Print("starting server on :5000")
+	err := http.ListenAndServe(":5000", mux)
 	log.Fatal(err)
 }
