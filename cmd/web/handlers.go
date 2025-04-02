@@ -12,13 +12,19 @@ import (
 func home(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Server", "Go")
 	w.Write([]byte("Hello from Snippetbox"))
-
+	// This section will add the comment of the section that will check if the template is accessable or not
 	ts, err := template.ParseFiles("./ui/html/pages/home.tmpl")
 
 	if err != nil {
 		log.Print(err.Error())
 		http.Error(w, "Internal Server", http.StatusInternalServerError)
 		return
+	}
+
+	err = ts.Execute(w, nil)
+	if err != nil {
+		log.Print(err.Error())
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 	}
 }
 
