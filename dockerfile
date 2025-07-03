@@ -12,7 +12,7 @@ RUN go mod download
 # copy all files
 COPY . . 
 # Build the go application
-RUN go build -o main ./web
+RUN go build -o main ./cmd/web
 
 # build the image
 FROM  alpine:latest
