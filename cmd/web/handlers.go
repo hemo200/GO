@@ -10,7 +10,7 @@ import (
 func home(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Server", "Go")
 	// This section will add the comment of the section that will check if the template is accessable or not
-	w.Write([]byte("test"))
+	w.Write([]byte("This is the home page"))
 
 }
 
