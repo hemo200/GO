@@ -1,11 +1,11 @@
 # Dockerfile
-FROM golang:1.21-alpine AS builder
+FROM golang:1.23-alpine AS builder
 
 #defind the folder
 WORKDIR /app 
 
 # copy files into a folder
-COPY go.mod go.sum ./
+COPY go.mod ./
 
 # keep a copy of pakcages in cache
 RUN go mod download
