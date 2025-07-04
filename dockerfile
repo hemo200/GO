@@ -17,6 +17,6 @@ RUN go build -o main ./cmd/web
 # build the image
 FROM  alpine:latest
 WORKDIR /root/
-COPY --from=builder /app/main .
+COPY --from=builder /app .
 EXPOSE 5000
 CMD [ "./main" ]
