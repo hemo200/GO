@@ -1,12 +1,15 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"net/http"
 )
 
 // this is the main branch
 func main() {
+	// this variable is to define the  port of the application
+	addr := flag.String("addr", ":5000", "HTTP network adress")
 	mux := http.NewServeMux()
 	fileserver := http.FileServer(http.Dir("./ui/static/"))
 	mux.HandleFunc("GET /{$}", home)
@@ -16,7 +19,7 @@ func main() {
 	mux.Handle("GET /static/", http.StripPrefix("/static", fileserver))
 
 	//the port to be changes to 5000
-	log.Print("starting server on :5000")
-	err := http.ListenAndServe(":5000", mux)
+	log.Printf("starting server on %s", *addr)
+	err := http.ListenAndServe(*addr, mux)
 	log.Fatal(err)
 }
