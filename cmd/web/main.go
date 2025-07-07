@@ -9,7 +9,8 @@ import (
 // this is the main branch
 func main() {
 	// this variable is to define the  port of the application
-	addr := flag.String("addr", ":4000:", "HTTP network address")
+	addr := flag.String("addr", ":4000", "HTTP network address")
+	flag.Parse()
 	mux := http.NewServeMux()
 	fileserver := http.FileServer(http.Dir("./ui/static/"))
 	mux.HandleFunc("GET /{$}", home)
