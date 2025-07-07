@@ -18,5 +18,5 @@ RUN go build -o main ./cmd/web
 FROM  alpine:latest
 WORKDIR /root/
 COPY --from=builder /app .
-EXPOSE 5000
-CMD [ "./main" ]
+EXPOSE 4000
+CMD [ "./main"]
