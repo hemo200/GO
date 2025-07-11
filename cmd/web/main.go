@@ -7,6 +7,12 @@ import (
 	"os"
 )
 
+// Creating application logger struct
+
+type application struct {
+	logger *slog.Logger
+}
+
 // this is the main branch
 func main() {
 	// this variable is to define the default port of the application
@@ -16,16 +22,19 @@ func main() {
 	//Creation of a logger
 	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
 
+	//declare an application logger method
+	app := &application{logger: logger}
+
 	//A new HTTP handler
 	mux := http.NewServeMux()
 	//file server handler
 	fileserver := http.FileServer(http.Dir("./ui/static/"))
 
 	//To handle HTTP requests
-	mux.HandleFunc("GET /{$}", home)
-	mux.HandleFunc("GET /snippet/view/{id}", snippetView)
-	mux.HandleFunc("GET /snippet/create", snippetCreate)
-	mux.HandleFunc("POST /snippet/create", snippetCreatePost)
+	mux.HandleFunc("GET /{$}", app.home)
+	mux.HandleFunc("GET /snippet/view/{id}", app.snippetView)
+	mux.HandleFunc("GET /snippet/create", app.snippetCreate)
+	mux.HandleFunc("POST /snippet/create", app.snippetCreatePost)
 	mux.Handle("GET /static/", http.StripPrefix("/static", fileserver))
 
 	// To display all application info logs
