@@ -7,13 +7,16 @@ import (
 	"net/http"
 	"os"
 
+	"snippetbox/internal/models"
+
 	_ "github.com/go-sql-driver/mysql"
 )
 
 // Creating application logger struct
 
 type application struct {
-	logger *slog.Logger
+	logger   *slog.Logger
+	snippets *models.SnippetModel
 }
 
 func main() {
@@ -34,7 +37,10 @@ func main() {
 	//Creation of a logger
 
 	//Declare an application logger method
-	app := &application{logger: logger}
+	app := &application{
+		logger:   logger,
+		snippets: &models.SnippetModel{DB: db},
+	}
 	defer db.Close()
 	//To display all application info logs
 	logger.Info("Starting server", "addr", *addr)
