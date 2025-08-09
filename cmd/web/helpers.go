@@ -12,7 +12,7 @@ func (app *application) serverError(w http.ResponseWriter, r *http.Request, err 
 
 }
 
-func (app *application) clientError(w http.ResponseWriter, status int) {
-	app.logger.Error("Item Not Found")
-	http.Error(w, http.StatusText(status), status)
-}
+// func (app *application) clientError(w http.ResponseWriter, status int) {
+// 	app.logger.Error("Item Not Found")
+// 	http.Error(w, http.StatusText(status), status)
+// }
